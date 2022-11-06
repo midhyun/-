@@ -3,7 +3,8 @@ from .models import Location, HotPlace, ImageHotPlace, Reviews, ImageReviews, Lo
 from .forms import ReviewForm, HotPlaceForm, HotPlaceImageForm, ReviewImageForm, HotUpdateForm, ReviewUpdateForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+
+
 # Create your views here.
 
 @login_required
@@ -164,4 +165,5 @@ def reviewupdate(request, pk):
         'image_form': image_form
     }
     return render(request, 'reviews/reviewcreate.html', context)
+
 
