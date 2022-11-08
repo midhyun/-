@@ -1,4 +1,4 @@
-# 🍦Team CREAM
+# 🍦Team Beanteambeanteam
 
 ## ✅ 프로젝트 소개
 
