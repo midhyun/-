@@ -6,6 +6,9 @@
 
 - 프로젝트 기간:  2022.11.01 ~ 2022.11.08
 
+- https://floating-reef-69235.herokuapp.com/reviews/
+
+
 <br>
 
 ## 🎯 기획 목표
@@ -61,7 +64,7 @@
 
 ## 🎥 시연 영상
 
-업로드 예정입니다.
+![create](README.assets/create.gif)
 
 <br>
 

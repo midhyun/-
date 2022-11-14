@@ -3,139 +3,145 @@
 
 {% block content %}
 <div name="box" class="container w-75 my-5">
-    <h1></h1>
-    
-    <form name="mapform" action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="mb-3"><label class="form-label" for="id_hotplace">명소 이름</label><input type="text" name="hotplace" maxlength="100" class="form-control" placeholder="명소 이름" required="" id="id_hotplace"></div>
-        {% if location.country %}
-        <div id="map" style="width:100%;height:400px;"></div>
-        <label for="id_addr" class="form-label">주소</label>
-        <div class="input-group mb-3">
-            <input name="addr" maxlength="80" required="주소를 입력하고 지도를 클릭해 마커를 표시해 주세요!" type="text" class="form-control" placeholder="직접 입력하거나 지도를 클릭해 마커를 표시하세요." id="id_addr" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button onclick="transform()" class="btn btn-primary" type="button" id="button-addon2">주소 확인</button>
-        </div>
-        <div class="mb-3"><label class="form-label" for="id_country">국가</label>
-        <select name="country" class="form-select" aria-label="Default select example">
-                <option selected>국내</option>
-                <option>해외</option>
-                </select>
-        </div>
-        {% else %}
-        <div class="mb-3"><label class="form-label" for="id_country">국가</label>
-            <select name="country" class="form-select" aria-label="Default select example">
-                    <option>국내</option>
-                    <option selected>해외</option>
-            </select>
-        </div>
-        {% endif %}
-        <div class="mb-3"><label class="form-label" for="id_theme" >테마</label>
-            <select aria-label="Default select example" class="form-select mb-3" name="themeselect" onchange="theme_change()">
-                <option value="9">직접입력</option>
-                <option value="관광" selected>관광</option>
-                <option value="테마파크">테마파크</option>
-                <option value="액티비티">액티비티</option> 
-                <option value="산">산</option>
-                <option value="바다">바다</option>
-                <option value="도시">도시</option> 
-                <option value="문화재">문화재</option> 
-            </select>
-            <input required="" cols="40" rows="10" id="id_theme" class="form-control" type="hidden" name="theme" placeholder="테마를 직접입력하세요." value="관광">
-        </div>
+  <h1></h1>
 
-        <div class="mb-3"><label class="form-label" for="id_content">명소 설명</label><textarea name="content" cols="40" rows="10" class="form-control" placeholder="명소 설명" required="" id="id_content"></textarea></div>
-        {% bootstrap_form image_form %}
-        <input name="x" type="hidden" value="">
-        <input name="y" type="hidden" value="">
-        <button class="btn btn-primary" type="submit">submit</button>
-    </form>
+  <form name="mapform" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3"><label class="form-label" for="id_hotplace">명소 이름</label><input type="text" name="hotplace"
+        maxlength="100" class="form-control" placeholder="명소 이름" required="" id="id_hotplace"></div>
+    {% if location.country %}
+    <div id="map" style="width:100%;height:400px;"></div>
+    <label for="id_addr" class="form-label">주소</label>
+    <div class="input-group mb-3">
+      <input name="addr" maxlength="80" required="주소를 입력하고 지도를 클릭해 마커를 표시해 주세요!" type="text" class="form-control"
+        placeholder="직접 입력하거나 지도를 클릭해 마커를 표시하세요." id="id_addr" aria-label="Recipient's username"
+        aria-describedby="button-addon2">
+      <button onclick="transform()" class="btn btn-primary" type="button" id="button-addon2">주소 확인</button>
+    </div>
+    <div class="mb-3"><label class="form-label" for="id_country">국가</label>
+      <select name="country" class="form-select" aria-label="Default select example">
+        <option selected>국내</option>
+        <option>해외</option>
+      </select>
+    </div>
+    {% else %}
+    <div class="mb-3"><label class="form-label" for="id_country">국가</label>
+      <select name="country" class="form-select" aria-label="Default select example">
+        <option>국내</option>
+        <option selected>해외</option>
+      </select>
+    </div>
+    {% endif %}
+    <div class="mb-3"><label class="form-label" for="id_theme">테마</label>
+      <select aria-label="Default select example" class="form-select mb-3" name="themeselect" onchange="theme_change()">
+        <option value="9">직접입력</option>
+        <option value="관광" selected>관광</option>
+        <option value="테마파크">테마파크</option>
+        <option value="액티비티">액티비티</option>
+        <option value="산">산</option>
+        <option value="바다">바다</option>
+        <option value="도시">도시</option>
+        <option value="문화재">문화재</option>
+      </select>
+      <input required="" cols="40" rows="10" id="id_theme" class="form-control" type="hidden" name="theme"
+        placeholder="테마를 직접입력하세요." value="관광">
+    </div>
+
+    <div class="mb-3"><label class="form-label" for="id_content">명소 설명</label><textarea name="content" cols="40"
+        rows="10" class="form-control" placeholder="명소 설명" required="" id="id_content"></textarea></div>
+    {% bootstrap_form image_form %}
+    <input name="x" type="hidden" value="">
+    <input name="y" type="hidden" value="">
+    <button class="btn btn-primary" type="submit">submit</button>
+  </form>
 </div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a296fe5c49ee5c07b18af90b459b38bb&libraries=services"></script>
+<script type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a296fe5c49ee5c07b18af90b459b38bb&libraries=services"></script>
 <script>
-var enteraddress = document.querySelector('[name="addr"]')
-enteraddress.addEventListener('keydown', function(event) {
-  if (event.keyCode === 13) {
-    document.getElementById('button-addon2').click();
-  };
-}, true);
+  var enteraddress = document.querySelector('[name="addr"]')
+  enteraddress.addEventListener('keydown', function (event) {
+    if (event.keyCode === 13) {
+      document.getElementById('button-addon2').click();
+    };
+  }, true);
 
-var mapContainer = document.getElementById('map'),
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3
+  var mapContainer = document.getElementById('map'),
+    mapOption = {
+      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      level: 3
     };
 
 
-var geocoder = new kakao.maps.services.Geocoder();
-geocoder.addressSearch(`{{ location.location }}`, function(result, status) {
-     if (status === kakao.maps.services.Status.OK) {
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        map.setCenter(coords);
-    } 
-});
+  var geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(`{{ location.location }}`, function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      map.setCenter(coords);
+    }
+  });
 
-var map = new kakao.maps.Map(mapContainer, mapOption);
+  var map = new kakao.maps.Map(mapContainer, mapOption);
 
-var marker = new kakao.maps.Marker({ 
+  var marker = new kakao.maps.Marker({
     position: map.getCenter()
-}); 
+  });
 
-marker.setMap(map);
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-function searchAddrFromCoords(coords, callback) {
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-}
+  marker.setMap(map);
+  kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+    function searchAddrFromCoords(coords, callback) {
+      geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
+    }
 
-function searchDetailAddrFromCoords(coords, callback) {
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-}
-searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
-            
-            var content = '<div class="bAddr">' +
-                            '<span class="title">법정동 주소정보</span>' + 
-                            detailAddr + 
-                        '</div>';
-            marker.setPosition(mouseEvent.latLng);
-            marker.setMap(map);
-            document.mapform.addr.value=result[0].road_address.address_name
+    function searchDetailAddrFromCoords(coords, callback) {
+      geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+    }
+    searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+        detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
 
-        }   
+        var content = '<div class="bAddr">' +
+          '<span class="title">법정동 주소정보</span>' +
+          detailAddr +
+          '</div>';
+        marker.setPosition(mouseEvent.latLng);
+        marker.setMap(map);
+        document.mapform.addr.value = result[0].road_address.address_name
+
+      }
     });
-     
-    var latlng = mouseEvent.latLng; 
-    
+
+    var latlng = mouseEvent.latLng;
+
     // 마커 위치를 클릭한 위치로 옮깁니다
     marker.setPosition(latlng);
-    document.mapform.x.value=latlng['La']
-    document.mapform.y.value=latlng['Ma']
-    
-});
-function transform() {
+    document.mapform.x.value = latlng['La']
+    document.mapform.y.value = latlng['Ma']
+
+  });
+  function transform() {
     var geocoder = new kakao.maps.services.Geocoder();
     var address = document.mapform.addr.value
-    geocoder.addressSearch(`${address}`, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    geocoder.addressSearch(`${address}`, function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
-    } else {
+      } else {
         alert('정확한 주소를 입력해 주세요. \n( 지번 또는 도로명주소 포맷을 지원합니다. )')
-    } 
-});
-}
-function theme_change(){
-if(document.mapform.themeselect.options[document.mapform.themeselect.selectedIndex].value == '9'){
- document.mapform.theme.type = "text"
- document.mapform.theme.value ="";
- document.mapform.theme.focus();
-} else{
- document.mapform.theme.type = "hidden"
- document.mapform.theme.value = document.mapform.themeselect.options[document.mapform.themeselect.selectedIndex].value;
-}
-}
+      }
+    });
+  }
+  function theme_change() {
+    if (document.mapform.themeselect.options[document.mapform.themeselect.selectedIndex].value == '9') {
+      document.mapform.theme.type = "text"
+      document.mapform.theme.value = "";
+      document.mapform.theme.focus();
+    } else {
+      document.mapform.theme.type = "hidden"
+      document.mapform.theme.value = document.mapform.themeselect.options[document.mapform.themeselect.selectedIndex].value;
+    }
+  }
 </script>
 {% endblock %}

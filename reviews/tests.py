@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from .models import Location
 # Create your tests here.
 location = Location.objects.get(location='서울')
 for i in range(20):
